@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c272f84b2881461bac8789c8091c949, type: 3}
+  m_Name: hub_optional_terminal
+  m_EditorClassIdentifier: Signal::Signal.Narrative.NarrativeEntry
+  EntryId: hub_optional_terminal
+  Text: 'Maintenance log 4471: Routine diagnostic. All crew accounted for. No anomalies.
+
+
+    ...but
+    the timestamp is three years after the last crew rotation was scheduled.'
+  VoiceClip: {fileID: 0}
+  AltConditionFlag: 
+  AltText: 
+  AltVoiceClip: {fileID: 0}
+  FlagToSet: found_hub_log_01

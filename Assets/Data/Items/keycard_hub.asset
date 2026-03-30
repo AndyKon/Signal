@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0495d845a87e040d7bc3dbb297bfae78, type: 3}
+  m_Name: keycard_hub
+  m_EditorClassIdentifier: Signal::Signal.Inventory.ItemDefinition
+  ItemId: keycard_hub
+  DisplayName: Hub Keycard
+  Description: A standard issue keycard for the Hub section.
+  Icon: {fileID: 0}
