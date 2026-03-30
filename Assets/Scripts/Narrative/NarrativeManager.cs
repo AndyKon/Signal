@@ -22,7 +22,6 @@ namespace Signal.Narrative
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(gameObject);
 
             foreach (var entry in _allEntries)
                 _entryLookup[entry.EntryId] = entry;

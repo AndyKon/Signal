@@ -18,7 +18,6 @@ namespace Signal.Interaction
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
         public void SetDefault() => Cursor.SetCursor(_defaultCursor, _hotspot, CursorMode.Auto);

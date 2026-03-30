@@ -21,7 +21,6 @@ namespace Signal.Interaction
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()

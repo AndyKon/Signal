@@ -20,7 +20,6 @@ namespace Signal.Audio
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
         public void PlayMusic(AudioClip clip)

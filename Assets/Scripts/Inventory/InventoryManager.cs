@@ -23,7 +23,6 @@ namespace Signal.Inventory
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(gameObject);
 
             foreach (var item in _allItems)
                 _itemLookup[item.ItemId] = item;

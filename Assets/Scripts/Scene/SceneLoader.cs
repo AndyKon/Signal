@@ -22,7 +22,6 @@ namespace Signal.Scene
             }
 
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
         public void LoadScene(string sceneName, bool isNewSection = false)
