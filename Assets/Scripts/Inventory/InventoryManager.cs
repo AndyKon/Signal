@@ -1,0 +1,1 @@
+namespace Signal.Inventory { public class InventoryManager : UnityEngine.MonoBehaviour { public static InventoryManager Instance; public void AddItem(string id) {} public void RemoveItem(string id) {} } }

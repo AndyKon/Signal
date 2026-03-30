@@ -1,0 +1,1 @@
+namespace Signal.Narrative { public class NarrativeManager : UnityEngine.MonoBehaviour { public static NarrativeManager Instance; public void ShowText(string text) {} public void PlayEntry(string id) {} } }
