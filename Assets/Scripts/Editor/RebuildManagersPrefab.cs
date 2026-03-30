@@ -33,7 +33,18 @@ namespace Signal.Editor
             root.AddComponent<CursorManager>();
 
             // InventoryManager on root
-            root.AddComponent<InventoryManager>();
+            var invMgr = root.AddComponent<InventoryManager>();
+            var invMgrSO = new SerializedObject(invMgr);
+            var itemsProp = invMgrSO.FindProperty("_allItems");
+            var itemGuids = AssetDatabase.FindAssets("t:ItemDefinition", new[] { "Assets/Data/Items" });
+            itemsProp.arraySize = itemGuids.Length;
+            for (int i = 0; i < itemGuids.Length; i++)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(itemGuids[i]);
+                var item = AssetDatabase.LoadAssetAtPath<ItemDefinition>(path);
+                itemsProp.GetArrayElementAtIndex(i).objectReferenceValue = item;
+            }
+            invMgrSO.ApplyModifiedPropertiesWithoutUndo();
 
             // --- AudioManager child ---
             var audioObj = new GameObject("AudioManager");
@@ -125,6 +136,18 @@ namespace Signal.Editor
             var narMgrSO = new SerializedObject(narMgr);
             narMgrSO.FindProperty("_narrativeUI").objectReferenceValue = narUI;
             narMgrSO.FindProperty("_voiceSource").objectReferenceValue = voiceSource;
+
+            // Wire up all NarrativeEntry assets from Data/Narrative
+            var entriesProp = narMgrSO.FindProperty("_allEntries");
+            var entryGuids = AssetDatabase.FindAssets("t:NarrativeEntry", new[] { "Assets/Data/Narrative" });
+            entriesProp.arraySize = entryGuids.Length;
+            for (int i = 0; i < entryGuids.Length; i++)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(entryGuids[i]);
+                var entry = AssetDatabase.LoadAssetAtPath<NarrativeEntry>(path);
+                entriesProp.GetArrayElementAtIndex(i).objectReferenceValue = entry;
+            }
+
             narMgrSO.ApplyModifiedPropertiesWithoutUndo();
 
             // --- PauseCanvas child ---
