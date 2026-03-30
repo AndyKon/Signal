@@ -10,7 +10,6 @@ namespace Signal.Interaction
     {
         public static InteractionManager Instance { get; private set; }
 
-        private Camera _camera;
         private Hotspot _hoveredHotspot;
 
         private void Awake()
@@ -23,20 +22,16 @@ namespace Signal.Interaction
             Instance = this;
         }
 
-        private void Start()
-        {
-            _camera = Camera.main;
-        }
-
         private void Update()
         {
+            if (Camera.main == null) return;
             UpdateHover();
             UpdateClick();
         }
 
         private void UpdateHover()
         {
-            Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
             Hotspot hotspot = null;
