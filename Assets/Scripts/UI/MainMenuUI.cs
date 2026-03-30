@@ -23,7 +23,22 @@ namespace Signal.UI
 
         private void OnNewGame()
         {
+            Debug.Log("[MainMenu] New Game clicked");
+
+            if (GameManager.Instance == null)
+            {
+                Debug.LogError("[MainMenu] GameManager.Instance is null — Bootstrap may have failed");
+                return;
+            }
+
+            if (SceneLoader.Instance == null)
+            {
+                Debug.LogError("[MainMenu] SceneLoader.Instance is null");
+                return;
+            }
+
             GameManager.Instance.NewGame();
+            Debug.Log($"[MainMenu] Loading scene: {_firstSceneName}");
             SceneLoader.Instance.LoadScene(_firstSceneName, isNewSection: true);
         }
 

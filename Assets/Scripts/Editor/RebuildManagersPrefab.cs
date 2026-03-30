@@ -60,7 +60,7 @@ namespace Signal.Editor
             audioSO.ApplyModifiedPropertiesWithoutUndo();
 
             // --- TransitionCanvas child ---
-            var transCanvas = CreateCanvas("TransitionCanvas", root.transform, 999);
+            var transCanvas = CreateCanvas("TransitionCanvas", root.transform, 999, includeRaycaster: false);
 
             var overlay = new GameObject("Overlay");
             overlay.transform.SetParent(transCanvas.transform, false);
@@ -71,6 +71,7 @@ namespace Signal.Editor
             overlayRect.offsetMax = Vector2.zero;
             var overlayImage = overlay.AddComponent<UnityEngine.UI.Image>();
             overlayImage.color = new Color(0, 0, 0, 0); // Transparent black
+            overlayImage.raycastTarget = false;
 
             var transOverlay = transCanvas.AddComponent<TransitionOverlay>();
             var transSO = new SerializedObject(transOverlay);
@@ -83,7 +84,7 @@ namespace Signal.Editor
             slSO.ApplyModifiedPropertiesWithoutUndo();
 
             // --- NarrativeCanvas child ---
-            var narCanvas = CreateCanvas("NarrativeCanvas", root.transform, 100);
+            var narCanvas = CreateCanvas("NarrativeCanvas", root.transform, 100, includeRaycaster: false);
 
             var narPanel = new GameObject("NarrativePanel");
             narPanel.transform.SetParent(narCanvas.transform, false);
@@ -174,7 +175,7 @@ namespace Signal.Editor
             pmuiSO.ApplyModifiedPropertiesWithoutUndo();
 
             // --- InventoryCanvas child ---
-            var invCanvas = CreateCanvas("InventoryCanvas", root.transform, 50);
+            var invCanvas = CreateCanvas("InventoryCanvas", root.transform, 50, includeRaycaster: false);
 
             var invBar = new GameObject("InventoryBar");
             invBar.transform.SetParent(invCanvas.transform, false);
@@ -218,7 +219,7 @@ namespace Signal.Editor
             EditorUtility.DisplayDialog("Done", "Managers prefab rebuilt at Assets/Resources/Managers.prefab\n\nRemember to add NarrativeEntry and ItemDefinition assets to the prefab's lists.", "OK");
         }
 
-        private static GameObject CreateCanvas(string name, Transform parent, int sortOrder)
+        private static GameObject CreateCanvas(string name, Transform parent, int sortOrder, bool includeRaycaster = true)
         {
             var obj = new GameObject(name);
             obj.transform.SetParent(parent, false);
@@ -228,7 +229,8 @@ namespace Signal.Editor
             var scaler = obj.AddComponent<UnityEngine.UI.CanvasScaler>();
             scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1280, 720);
-            obj.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+            if (includeRaycaster)
+                obj.AddComponent<UnityEngine.UI.GraphicRaycaster>();
             return obj;
         }
 
