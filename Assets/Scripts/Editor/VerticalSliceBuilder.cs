@@ -365,9 +365,9 @@ namespace Signal.Editor
         {
             var obj = new GameObject(name);
             obj.transform.position = position;
-            obj.AddComponent<Hotspot>();
             var col = obj.AddComponent<BoxCollider2D>();
             col.size = size;
+            obj.AddComponent<Hotspot>();
 
             // Visual indicator (white semi-transparent square)
             var visual = new GameObject("Highlight");
