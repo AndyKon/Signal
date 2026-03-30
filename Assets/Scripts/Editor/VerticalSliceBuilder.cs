@@ -6,6 +6,7 @@ using Signal.Interaction;
 using Signal.Narrative;
 using Signal.Inventory;
 using Signal.Audio;
+using Signal.UI;
 
 namespace Signal.Editor
 {
