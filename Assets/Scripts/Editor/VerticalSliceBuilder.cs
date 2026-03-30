@@ -130,6 +130,11 @@ namespace Signal.Editor
             cam.clearFlags = CameraClearFlags.SolidColor;
             camObj.tag = "MainCamera";
 
+            // EventSystem (required for UI clicks)
+            var eventSystem = new GameObject("EventSystem");
+            eventSystem.AddComponent<UnityEngine.EventSystems.EventSystem>();
+            eventSystem.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+
             // Canvas
             var canvas = CreateCanvas("MenuCanvas", 0);
 
@@ -344,6 +349,12 @@ namespace Signal.Editor
             cam.backgroundColor = new Color(0.05f, 0.05f, 0.08f);
             cam.clearFlags = CameraClearFlags.SolidColor;
             camObj.tag = "MainCamera";
+
+            // Global Light 2D — required for URP 2D to render sprites
+            var lightObj = new GameObject("Global Light 2D");
+            var light = lightObj.AddComponent<UnityEngine.Rendering.Universal.Light2D>();
+            light.lightType = UnityEngine.Rendering.Universal.Light2D.LightType.Global;
+            light.intensity = 1f;
         }
 
         private static void CreateBackground(string spritePath)
