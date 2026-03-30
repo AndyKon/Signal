@@ -187,7 +187,7 @@ namespace Signal.Editor
             CreateBackground("Assets/Art/Backgrounds/hub_room1_placeholder.png");
 
             // Intro terminal hotspot (center)
-            var introTerminal = CreateHotspot("IntroTerminal", new Vector3(0, 0, 0), new Vector2(3, 2));
+            var introTerminal = CreateHotspot("IntroTerminal", new Vector3(0, 1, 0), new Vector2(3, 2));
             var introHotspot = introTerminal.GetComponent<Hotspot>();
             var introAction = new HotspotAction
             {
@@ -197,7 +197,7 @@ namespace Signal.Editor
             SetSerializedField(introHotspot, "_action", introAction);
 
             // Optional terminal (left side)
-            var optTerminal = CreateHotspot("OptionalTerminal", new Vector3(-7, 0, 0), new Vector2(2, 2));
+            var optTerminal = CreateHotspot("OptionalTerminal", new Vector3(-5, 1, 0), new Vector2(2, 2));
             var optHotspot = optTerminal.GetComponent<Hotspot>();
             var optAction = new HotspotAction
             {
@@ -207,7 +207,7 @@ namespace Signal.Editor
             SetSerializedField(optHotspot, "_action", optAction);
 
             // Door to Room 2 (right side)
-            var door = CreateHotspot("DoorToRoom2", new Vector3(9, 0, 0), new Vector2(1, 3));
+            var door = CreateHotspot("DoorToRoom2", new Vector3(6, 0, 0), new Vector2(2, 3));
             var doorHotspot = door.GetComponent<Hotspot>();
             var doorAction = new HotspotAction
             {
@@ -218,9 +218,9 @@ namespace Signal.Editor
             SetSerializedField(doorHotspot, "_action", doorAction);
 
             // Label objects for clarity in editor
-            CreateLabel("< Optional Terminal", new Vector3(-7, -2, 0));
-            CreateLabel("[ Intro Terminal ]", new Vector3(0, -2, 0));
-            CreateLabel("Door >", new Vector3(9, -2, 0));
+            CreateLabel("< Optional Terminal", new Vector3(-5, -1, 0));
+            CreateLabel("[ Intro Terminal ]", new Vector3(0, -1, 0));
+            CreateLabel("Door >", new Vector3(6, -2, 0));
 
             // Scene audio placeholder
             var audioObj = new GameObject("SceneAudio");
@@ -237,7 +237,7 @@ namespace Signal.Editor
             CreateBackground("Assets/Art/Backgrounds/hub_room2_placeholder.png");
 
             // Door back to Room 1
-            var doorBack = CreateHotspot("DoorToRoom1", new Vector3(-9, 0, 0), new Vector2(1, 3));
+            var doorBack = CreateHotspot("DoorToRoom1", new Vector3(-6, 0, 0), new Vector2(2, 3));
             var doorBackHotspot = doorBack.GetComponent<Hotspot>();
             var doorBackAction = new HotspotAction
             {
@@ -247,7 +247,7 @@ namespace Signal.Editor
             SetSerializedField(doorBackHotspot, "_action", doorBackAction);
 
             // Keycard pickup
-            var keycard = CreateHotspot("KeycardPickup", new Vector3(0, -1, 0), new Vector2(1.5f, 1));
+            var keycard = CreateHotspot("KeycardPickup", new Vector3(0, 0, 0), new Vector2(2, 1.5f));
             var keycardHotspot = keycard.GetComponent<Hotspot>();
             var keycardAction = new HotspotAction
             {
@@ -264,7 +264,7 @@ namespace Signal.Editor
             SetSerializedField(keycardHotspot, "_condition", keycardCondition);
 
             // Door to Room 3 (locked, needs keycard)
-            var doorForward = CreateHotspot("DoorToRoom3", new Vector3(9, 0, 0), new Vector2(1, 3));
+            var doorForward = CreateHotspot("DoorToRoom3", new Vector3(6, 0, 0), new Vector2(2, 3));
             var doorForwardHotspot = doorForward.GetComponent<Hotspot>();
             var doorForwardAction = new HotspotAction
             {
@@ -279,9 +279,9 @@ namespace Signal.Editor
             SetSerializedField(doorForwardHotspot, "_condition", doorForwardCondition);
 
             // Labels
-            CreateLabel("< Door Back", new Vector3(-9, -2, 0));
-            CreateLabel("[ Keycard ]", new Vector3(0, -3, 0));
-            CreateLabel("Door (Locked) >", new Vector3(9, -2, 0));
+            CreateLabel("< Door Back", new Vector3(-6, -2, 0));
+            CreateLabel("[ Keycard ]", new Vector3(0, -2, 0));
+            CreateLabel("Door (Locked) >", new Vector3(6, -2, 0));
 
             var audioObj = new GameObject("SceneAudio");
             audioObj.AddComponent<SceneAudio>();
@@ -297,7 +297,7 @@ namespace Signal.Editor
             CreateBackground("Assets/Art/Backgrounds/hub_room3_placeholder.png");
 
             // Door back to Room 2
-            var doorBack = CreateHotspot("DoorToRoom2", new Vector3(-9, 0, 0), new Vector2(1, 3));
+            var doorBack = CreateHotspot("DoorToRoom2", new Vector3(-6, 0, 0), new Vector2(2, 3));
             var doorBackHotspot = doorBack.GetComponent<Hotspot>();
             var doorBackAction = new HotspotAction
             {
@@ -317,7 +317,7 @@ namespace Signal.Editor
             SetSerializedField(consoleHotspot, "_action", consoleAction);
 
             // Labels
-            CreateLabel("< Door Back", new Vector3(-9, -2, 0));
+            CreateLabel("< Door Back", new Vector3(-6, -2, 0));
             CreateLabel("[ Power Console ]", new Vector3(3, -2, 0));
 
             var audioObj = new GameObject("SceneAudio");
