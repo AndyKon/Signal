@@ -119,17 +119,16 @@ namespace Signal.Editor
 
         private static void CreateMainMenuScene()
         {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
 
-            // Camera
-            var camObj = new GameObject("Main Camera");
-            var cam = camObj.AddComponent<Camera>();
-            cam.orthographic = true;
-            cam.orthographicSize = 5.625f; // 180 / 32
-            cam.backgroundColor = Color.black;
-            cam.clearFlags = CameraClearFlags.SolidColor;
-            camObj.tag = "MainCamera";
-            camObj.AddComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
+            // Adjust existing camera
+            var cam = Camera.main;
+            if (cam != null)
+            {
+                cam.orthographic = true;
+                cam.orthographicSize = 5.625f;
+                cam.backgroundColor = Color.black;
+            }
 
             // EventSystem (required for UI clicks)
             var eventSystem = new GameObject("EventSystem");
@@ -181,8 +180,8 @@ namespace Signal.Editor
 
         private static void CreateRoom1()
         {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-            SetupRoomCamera();
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
+            SetupRoomScene();
 
             // Background
             CreateBackground("Assets/Art/Backgrounds/hub_room1_placeholder.png");
@@ -232,8 +231,8 @@ namespace Signal.Editor
 
         private static void CreateRoom2()
         {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-            SetupRoomCamera();
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
+            SetupRoomScene();
 
             CreateBackground("Assets/Art/Backgrounds/hub_room2_placeholder.png");
 
@@ -292,8 +291,8 @@ namespace Signal.Editor
 
         private static void CreateRoom3()
         {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-            SetupRoomCamera();
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
+            SetupRoomScene();
 
             CreateBackground("Assets/Art/Backgrounds/hub_room3_placeholder.png");
 
@@ -341,25 +340,26 @@ namespace Signal.Editor
 
         // --- Helpers ---
 
-        private static void SetupRoomCamera()
+        private static void SetupRoomScene()
         {
-            // Use URP camera setup so rendering works correctly
-            var camObj = new GameObject("Main Camera");
-            var cam = camObj.AddComponent<Camera>();
-            cam.orthographic = true;
-            cam.orthographicSize = 5.625f;
-            cam.backgroundColor = new Color(0.05f, 0.05f, 0.08f);
-            cam.clearFlags = CameraClearFlags.SolidColor;
-            camObj.tag = "MainCamera";
+            // DefaultGameObjects gives us a working camera with URP already configured.
+            // Just adjust its settings for our pixel art game.
+            var cam = Camera.main;
+            if (cam != null)
+            {
+                cam.orthographic = true;
+                cam.orthographicSize = 5.625f;
+                cam.backgroundColor = new Color(0.05f, 0.05f, 0.08f);
+            }
 
-            // Add URP camera data component
-            camObj.AddComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
-
-            // Global Light 2D — required for URP 2D to render sprites
-            var lightObj = new GameObject("Global Light 2D");
-            var light = lightObj.AddComponent<UnityEngine.Rendering.Universal.Light2D>();
-            light.lightType = UnityEngine.Rendering.Universal.Light2D.LightType.Global;
-            light.intensity = 1f;
+            // Add Global Light 2D if one doesn't already exist
+            if (Object.FindFirstObjectByType<UnityEngine.Rendering.Universal.Light2D>() == null)
+            {
+                var lightObj = new GameObject("Global Light 2D");
+                var light = lightObj.AddComponent<UnityEngine.Rendering.Universal.Light2D>();
+                light.lightType = UnityEngine.Rendering.Universal.Light2D.LightType.Global;
+                light.intensity = 1f;
+            }
         }
 
         private static void CreateBackground(string spritePath)
