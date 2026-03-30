@@ -1,7 +1,7 @@
 {
     "name": "Signal.Editor",
     "rootNamespace": "Signal.Editor",
-    "references": ["Signal", "Unity.TextMeshPro", "Unity.RenderPipelines.Universal.2D.Runtime"],
+    "references": ["Signal", "Unity.TextMeshPro", "Unity.RenderPipelines.Universal.2D.Runtime", "Unity.RenderPipelines.Universal.Runtime"],
     "includePlatforms": ["Editor"],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -129,6 +129,7 @@ namespace Signal.Editor
             cam.backgroundColor = Color.black;
             cam.clearFlags = CameraClearFlags.SolidColor;
             camObj.tag = "MainCamera";
+            camObj.AddComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
 
             // EventSystem (required for UI clicks)
             var eventSystem = new GameObject("EventSystem");
@@ -342,6 +343,7 @@ namespace Signal.Editor
 
         private static void SetupRoomCamera()
         {
+            // Use URP camera setup so rendering works correctly
             var camObj = new GameObject("Main Camera");
             var cam = camObj.AddComponent<Camera>();
             cam.orthographic = true;
@@ -349,6 +351,9 @@ namespace Signal.Editor
             cam.backgroundColor = new Color(0.05f, 0.05f, 0.08f);
             cam.clearFlags = CameraClearFlags.SolidColor;
             camObj.tag = "MainCamera";
+
+            // Add URP camera data component
+            camObj.AddComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
 
             // Global Light 2D — required for URP 2D to render sprites
             var lightObj = new GameObject("Global Light 2D");
