@@ -1,0 +1,5 @@
+﻿<Solution>
+  <Project Path="Signal.csproj" />
+  <Project Path="EditModeTests.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+</Solution>
